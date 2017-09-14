@@ -12,6 +12,19 @@ class DgServerLog
 {
     protected $_enabled = TRUE;
     protected $_method  = "file";
+    /**
+     * 设置项目名称
+     *
+     * @var null|string
+     */
+    protected $_projectName = "api";
+
+    function __construct($project = null)
+    {
+        if (!is_null($project)) {
+            $this->_projectName = $project;
+        }
+    }
 
     function diffTime($start_time = array(), $end_time = array())
     {
@@ -108,7 +121,7 @@ class DgServerLog
         $msg['req']['register_method'] = $register_method;  // 注册类型
 
 
-        return $this->logData('NOTICE', 'passport', $msg);
+        return $this->logData('NOTICE', $this->_projectName, $msg);
     }
 
     /**
