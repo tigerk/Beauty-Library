@@ -1,5 +1,7 @@
 <?php
 
+namespace Beauty;
+
 /**
  * Created by PhpStorm.
  * User: tigerkim
