@@ -8,7 +8,7 @@
 
 namespace Beauty;
 
-class KafkaLogger extends Logger
+class KafkaLogger implements Logger
 {
     private $_producer;
 

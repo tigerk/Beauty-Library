@@ -9,7 +9,7 @@
 namespace Beauty;
 
 
-class FileLogger extends Logger
+class FileLogger implements Logger
 {
     /**
      * 将日志写入到文件
