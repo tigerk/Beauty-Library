@@ -19,11 +19,20 @@ class DgServerLog
      */
     protected $_projectName = "api";
 
-    function __construct($project = null)
+    protected $_logger;
+
+    /**
+     * DgServerLog constructor.
+     * @param null $project
+     */
+    function __construct(Logger $logger)
     {
-        if (!is_null($project)) {
-            $this->_projectName = $project;
-        }
+        $this->_logger = $logger;
+    }
+
+    function setProjectName($project)
+    {
+        $this->_projectName = $project;
     }
 
     function diffTime($start_time = array(), $end_time = array())
@@ -141,41 +150,7 @@ class DgServerLog
         $level   = strtolower($level);
         $msgdata = $this->_genLogData($level, $msg, $plat);
 
-        $this->_logIntoFile($plat, $msgdata);
-
-        return TRUE;
-    }
-
-    /**
-     * 将日志写入到文件
-     *
-     * @param    string $platform 平台
-     * @param    string $message 日志消息内容
-     * @return    bool
-     */
-    private function _logIntoFile($platform = 'www', $message = '')
-    {
-        if ($message == '') {
-            return false;
-        }
-        if ($platform == '') {
-            $platform = 'other';
-        }
-        $platform     = strtolower($platform);
-        $logfile_path = "/tmp/";
-        $filepath     = $logfile_path . 'sys_log_' . $platform . '_' . date('YmdH') . '.log';
-
-        if ($platform == 'api') {
-            $starttime = microtime();
-            $start     = explode(" ", $starttime);
-            error_log(json_encode($message, JSON_UNESCAPED_UNICODE) . "\n", 3, $filepath);
-            $endtime = microtime();
-            $end     = explode(" ", $endtime);
-            $runtime = sprintf("%f", ($end[0] - $start[0]) + ($end[1] - $start[1]));
-            error_log("[" . date('Y-m-d H:i:s') . "]" . $message['req']['logid'] . "\t" . $runtime . "\n", 3, "/tmp/que" . date("md") . ".log");
-        } else {
-            error_log(json_encode($message, JSON_UNESCAPED_UNICODE) . "\n", 3, $filepath);
-        }
+        $this->_logger->log($plat, $msgdata);
 
         return TRUE;
     }
