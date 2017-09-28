@@ -51,6 +51,7 @@ class KafkaLogger implements Logger
 
         $topic = $this->_producer->newTopic($platform);
         $topic->produce(RD_KAFKA_PARTITION_UA, 0, json_encode($message, JSON_UNESCAPED_UNICODE));
+        $this->_producer->poll(0);
 
         while ($this->_producer->getOutQLen() > 0) {
             $this->_producer->poll(1);
