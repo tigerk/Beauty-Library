@@ -10,7 +10,7 @@ namespace Beauty;
 
 class KafkaLogger implements Logger
 {
-    private $_producer;
+    static $_producer;
 
     function __construct($hosts)
     {
@@ -23,10 +23,12 @@ class KafkaLogger implements Logger
             $conf->set('queue.buffering.max.ms', 1);
         }
 
-        $this->_producer = new \RdKafka\Producer($conf);
+        if (is_null(self::$_producer)) {
+            self::$_producer = new \RdKafka\Producer($conf);
+        };
 
         $lostrhost = implode(",", $hosts);
-        $this->_producer->addBrokers($lostrhost);
+        self::$_producer->addBrokers($lostrhost);
 
     }
 
@@ -49,13 +51,9 @@ class KafkaLogger implements Logger
 
         $platform = strtolower($platform);
 
-        $topic = $this->_producer->newTopic($platform);
+        $topic = self::$_producer->newTopic($platform);
         $topic->produce(RD_KAFKA_PARTITION_UA, 0, json_encode($message, JSON_UNESCAPED_UNICODE));
-        $this->_producer->poll(0);
-
-        while ($this->_producer->getOutQLen() > 0) {
-            $this->_producer->poll(1);
-        }
+        self::$_producer->poll(1);
 
         return TRUE;
     }
