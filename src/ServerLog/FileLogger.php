@@ -6,7 +6,7 @@
  * Time: 12:02
  */
 
-namespace Beauty;
+namespace Beauty\ServerLog;
 
 
 class FileLogger implements Logger

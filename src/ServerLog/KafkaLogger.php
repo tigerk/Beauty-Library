@@ -6,7 +6,7 @@
  * Time: 16:36
  */
 
-namespace Beauty;
+namespace Beauty\ServerLog;
 
 class KafkaLogger implements Logger
 {

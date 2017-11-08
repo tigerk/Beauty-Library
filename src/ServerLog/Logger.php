@@ -6,7 +6,7 @@
  * Time: 13:25
  */
 
-namespace Beauty;
+namespace Beauty\ServerLog;
 
 Interface Logger
 {

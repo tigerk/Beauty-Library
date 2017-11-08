@@ -1,6 +1,6 @@
 <?php
 
-namespace Beauty;
+namespace Beauty\ServerLog;
 
 /**
  * Created by PhpStorm.
