@@ -1,7 +1,7 @@
 {
-    "name": "beauty/serverlog",
-    "description": "The beauty ServerLog.",
-    "keywords": ["framework", "beauty"],
+    "name": "beauty/library",
+    "description": "The beauty Library.",
+    "keywords": ["framework", "beauty", "library"],
     "type": "library",
     "license": "MIT",
     "authors": [
