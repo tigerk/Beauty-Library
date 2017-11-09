@@ -9,7 +9,7 @@
 namespace Beauty\ServerLog;
 
 
-class FileLogger implements Logger
+class HttpLogger implements Logger
 {
     private $_url;
 
