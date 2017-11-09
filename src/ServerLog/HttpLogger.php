@@ -11,11 +11,11 @@ namespace Beauty\ServerLog;
 
 class FileLogger implements Logger
 {
-    private $_host;
+    private $_url;
 
-    function __construct($host)
+    function __construct($server)
     {
-        $this->_host = $host;
+        $this->_url = $server;
     }
 
     /**
@@ -38,9 +38,9 @@ class FileLogger implements Logger
             'type' => $platform,
             'slog' => $message
         );
-        $url          = "http://{$this->_host}/";
-        $data         = http_build_query($loarrContent);
-        $ch           = curl_init($url);
+
+        $data = http_build_query($loarrContent);
+        $ch   = curl_init($this->_url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
