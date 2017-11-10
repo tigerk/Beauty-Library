@@ -36,7 +36,7 @@ class HttpLogger implements Logger
         $platform     = strtolower($platform);
         $loarrContent = array(
             'type' => $platform,
-            'slog' => $message
+            'slog' => json_encode($message, JSON_UNESCAPED_UNICODE)
         );
 
         $data = http_build_query($loarrContent);
