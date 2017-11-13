@@ -47,7 +47,7 @@ class HttpLogger implements Logger
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT_MS, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT_MS, 20);
         curl_exec($ch);
         $errNo      = curl_errno($ch);
         $errMessage = curl_error($ch);
