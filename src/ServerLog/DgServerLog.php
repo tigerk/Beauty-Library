@@ -210,13 +210,6 @@ class DgServerLog
         $data['plat'] = strtoupper($plat);
         // APP中的HTML5页面访问统计
         if (isset($msg['req'])) {
-            $data['req']['souc']            = isset($msg['req']['souc']) ? $msg['req']['souc'] : '';
-            $data['req']['vers']            = isset($msg['req']['vers']) ? $msg['req']['vers'] : '';
-            $data['req']['chan']            = isset($msg['req']['chan']) ? $msg['req']['chan'] : '';
-            $data['req']['mac']             = isset($msg['req']['mac']) ? $msg['req']['mac'] : '';
-            $data['req']['devi']            = isset($msg['req']['devi']) ? $msg['req']['devi'] : '';
-            $data['req']['imei']            = isset($msg['req']['imei']) ? $msg['req']['imei'] : '';
-            $data['req']['ifa']             = isset($msg['req']['ifa']) ? $msg['req']['ifa'] : '';
             $data['req']['login_type']      = isset($msg['req']['login_type']) ? $msg['req']['login_type'] : '';    // 登录方式
             $data['req']['login_method']    = isset($msg['req']['login_method']) ? $msg['req']['login_method'] : ''; // 登录类型
             $data['req']['register_type']   = isset($msg['req']['register_type']) ? $msg['req']['register_type'] : '';  // 注册方式
