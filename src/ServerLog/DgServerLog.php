@@ -92,11 +92,11 @@ class DgServerLog
          * 所有的api请求都会有ss请求参数
          * 搜索来源，用于统计 ss = search source
          */
-        $sourcetype = "";
+        $sourcetype = isset($_POST['_vs']) ? $_POST['_vs'] : (isset($_POST['ss']) ? $_POST['ss'] : '');
         // 记录用户登录的agentid
-        $agentid = "";
+        $agentid = isset($_REQUEST['agent_id']) ? $_REQUEST['agent_id'] : "";
         // 记录搜索路径
-        $ext = "";
+        $ext = isset($_POST['_ext']) ? $_POST['_ext'] : "";
 
         $logconf        = array(
             "log_start_time" => gettimeofday(),
