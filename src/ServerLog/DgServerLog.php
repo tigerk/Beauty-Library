@@ -200,6 +200,7 @@ class DgServerLog
         $data['req']['lat']        = isset($_SERVER['HTTP_LAT']) ? addslashes($_SERVER['HTTP_LAT']) : '';
         $data['req']['lon']        = isset($_SERVER['HTTP_LON']) ? addslashes($_SERVER['HTTP_LON']) : '';
         $data['req']['srctype']    = isset($msg['srctype']) ? $msg['srctype'] : '';
+        $data['req']['sessionid']  = isset($msg['sessionid']) ? $msg['sessionid'] : '';
         $data['req']['agentid']    = isset($msg['agentid']) ? $msg['agentid'] : '';
         $data['req']['ext']        = isset($msg['ext']) ? $msg['ext'] : '';
         $data['req']['page_num']   = isset($msg['page_num']) ? $msg['page_num'] : '';
