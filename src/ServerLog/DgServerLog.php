@@ -121,6 +121,7 @@ class DgServerLog
         $msg['qtype_sub']              = $qtype_sub;
         $msg['srctype']                = $sourcetype;
         $msg['agentid']                = $agentid;
+        $msg['sessionid']              = isset($_POST['_session']) ? $_POST['_session'] : "";
         $msg['page_num']               = $page_num;
         $msg['ext']                    = $ext;
         $msg['req']['souc']            = $app_key;
@@ -206,15 +207,27 @@ class DgServerLog
         $data['cmmt']              = isset($msg['comment']) ? $msg['comment'] : '';
         $data['req']['android_id'] = isset($_SERVER['android_id']) ? $_SERVER['android_id'] : '';
         $data['req']['pseudo_id']  = isset($_SERVER['pseudo_id']) ? $_SERVER['pseudo_id'] : '';
+        $data['req']['rext']       = isset($msg['rext']) ? $msg['rext'] : '';
+        /**
+         * 652版本开始添加的header信息
+         */
+        $data['req']['brand']    = isset($_SERVER['HTTP_BRAND']) ? $_SERVER['HTTP_BRAND'] : '';
+        $data['req']['scale']    = isset($_SERVER['HTTP_SCALE']) ? $_SERVER['HTTP_SCALE'] : '';
+        $data['req']['timezone'] = isset($_SERVER['HTTP_TIMEZONE']) ? $_SERVER['HTTP_TIMEZONE'] : '';
+        $data['req']['carrier']  = isset($_SERVER['HTTP_CARRIER']) ? $_SERVER['HTTP_CARRIER'] : '';
+        $data['req']['language'] = isset($_SERVER['HTTP_LANGUAGE']) ? $_SERVER['HTTP_LANGUAGE'] : '';
+        $data['req']['cns']      = isset($_SERVER['HTTP_CNS']) ? $_SERVER['HTTP_CNS'] : '';
+        $data['req']['reach']    = isset($_SERVER['HTTP_REACH']) ? $_SERVER['HTTP_REACH'] : '';
+        $data['req']['imsi']     = isset($_SERVER['HTTP_IMSI']) ? $_SERVER['HTTP_IMSI'] : '';
 
         $data['plat'] = strtoupper($plat);
         // APP中的HTML5页面访问统计
-        if (isset($msg['req'])) {
-            $data['req']['login_type']      = isset($msg['req']['login_type']) ? $msg['req']['login_type'] : '';    // 登录方式
-            $data['req']['login_method']    = isset($msg['req']['login_method']) ? $msg['req']['login_method'] : ''; // 登录类型
-            $data['req']['register_type']   = isset($msg['req']['register_type']) ? $msg['req']['register_type'] : '';  // 注册方式
-            $data['req']['register_method'] = isset($msg['req']['register_method']) ? $msg['req']['register_method'] : '';  // 注册类型
-        }
+//        if (isset($msg['req'])) {
+//            $data['req']['login_type']      = isset($msg['req']['login_type']) ? $msg['req']['login_type'] : '';    // 登录方式
+//            $data['req']['login_method']    = isset($msg['req']['login_method']) ? $msg['req']['login_method'] : ''; // 登录类型
+//            $data['req']['register_type']   = isset($msg['req']['register_type']) ? $msg['req']['register_type'] : '';  // 注册方式
+//            $data['req']['register_method'] = isset($msg['req']['register_method']) ? $msg['req']['register_method'] : '';  // 注册类型
+//        }
 
         return $data;
     }
