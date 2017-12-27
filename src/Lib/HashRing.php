@@ -42,7 +42,7 @@ class HashRing
             // last wins, thus the order in which nodes are added is significant.
             $this->nodes[] = array(
                 'object' => sprintf("%s:%s", $node['host'], $node['port']),
-                'weight' => isset($node['weight']) && (int)$node['weight'] ?: $this::DEFAULT_WEIGHT,
+                'weight' => isset($node['weight']) && (int)$node['weight'] ? $node['weight'] : $this::DEFAULT_WEIGHT,
             );
         }
 
