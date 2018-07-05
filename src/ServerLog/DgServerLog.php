@@ -209,6 +209,7 @@ class DgServerLog
         $data['req']['android_id'] = isset($_SERVER['android_id']) ? $_SERVER['android_id'] : '';
         $data['req']['pseudo_id']  = isset($_SERVER['pseudo_id']) ? $_SERVER['pseudo_id'] : '';
         $data['req']['rext']       = isset($msg['rext']) ? $msg['rext'] : '';
+        $data['req']['app_state']  = isset($_SERVER['HTTP_APP_STATE']) ? $_SERVER['HTTP_APP_STATE'] : '';
         /**
          * 652版本开始添加的header信息
          */
