@@ -427,12 +427,12 @@ class DLog
             return $func();
         }
         $dataPath = self::getDataPath();
-        $filename = $dataPath . '/log/' . $md5val . '.php';
+        $filename = $dataPath . '/blog/' . $md5val . '.php';
         if (!file_exists($filename)) {
             $pid          = false !== stripos(PHP_OS, "win") ? getmygid() : posix_getpid();
             $tmp_filename = $filename . '.' . $pid . '.' . rand();
-            if (!is_dir($dataPath . '/log')) {
-                @mkdir($dataPath . '/log', 0777, true);
+            if (!is_dir($dataPath . '/blog')) {
+                @mkdir($dataPath . '/blog', 0777, true);
             }
             file_put_contents($tmp_filename, $this->parseFormat($format));
             rename($tmp_filename, $filename);
